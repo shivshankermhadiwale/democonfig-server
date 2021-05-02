@@ -1,0 +1,21 @@
+server.port: 8080
+eureka.client.serviceUrl.defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+eureka.client.instance.preferIpAddress: true
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: studentservice
+        uri: http://STUDENT-SERVICE:8085/
+        predicates:
+        - Path=/student/**
+      - id: teacherservice
+        uri: http://TEACHER-SERVICE:8086/
+        predicates:
+        - Path=/teacher/**
+      - id: batchservice
+        uri: http://BATCH-SERVICE:8087/
+        predicates:
+        - Path=/batch/**
+  zipkin:
+    baseUrl: http://localhost:9411/
