@@ -6,15 +6,15 @@ spring:
     gateway:
       routes:
       - id: studentservice
-        uri: http://STUDENT-SERVICE/
+        uri: lb://STUDENT-SERVICE/
         predicates:
         - Path=/student/**
       - id: teacherservice
-        uri: http://TEACHER-SERVICE/
+        uri: lb://TEACHER-SERVICE/
         predicates:
         - Path=/teacher/**
       - id: batchservice
-        uri: http://localhost:8087/
+        uri: lb://BATCH-SERVICE/
         predicates:
         - Path=/batch/**
   zipkin:
